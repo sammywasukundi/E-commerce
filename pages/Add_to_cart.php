@@ -5,28 +5,23 @@
     if(!isset($_SESSION)){
         session_start();
     }
-    if(!isset($_SESSION['resto_management'])){
+    if(!isset($_SESSION['panier'])){
 
-        $_SESSION['resto_management'] = array();
+        $_SESSION['panier'] = array();
     }
+    //echo $_GET['id_produit'];
 
-    if(isset($_GET['id'])){
-        $id = $_GET['id'];
+    if(isset($_GET['id_produit'])){
+        $id = $_GET['id_produit'];
     
         // Exécuter la requête SQL
-        $readOne = $pdo->query("SELECT * FROM panier WHERE id='$id_produit'");
+        $readOne = $pdo->query("SELECT * FROM produits WHERE id_produit=$id");
         
-        // Vérifier si la requête a réussi
-        if($readOne === false){
-            // Afficher les informations sur l'erreur
-            print_r($pdo->errorInfo());
-            die("Une erreur s'est produite lors de l'exécution de la requête.");
-        }
-    
-        // Vérifier le nombre de lignes retournées
-        if($readOne->rowCount() == 0){
+        if(empty($readOne->fetch(PDO::FETCH_ASSOC))){
             die("Cet article n'existe pas.");
         }
+    
+
    
     
     
@@ -36,7 +31,9 @@
         }
         else{
             $_SESSION['panier'][$id] = 1;
-            header('Location : home.php');
+
         }
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit;
     }
 ?>

@@ -1,7 +1,6 @@
 <?php
 include 'home.php';
 
-// var_dump(array());
 if (!isset($_SESSION['ID_Utilisateur'])) {
     header('Location: index.php');
     exit(0);
@@ -23,11 +22,11 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                     ?>
                     <div class="flex items-center justify-center mt-10 min-h-screen rounded" id="produit1">
                         <div
-                            class="mx-auto max-w-xs bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                            <button type="submit" data-modal-target="large-modal" data-modal-toggle="large-modal">
-                                <img class="p-8 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>"
-                                    alt="product image" />
-                            </button>
+                            class="mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                                <button type="submit" data-modal-target="large-modal" data-modal-toggle="large-modal">
+                                    <img class="p-4 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>"
+                                        alt="product image" />
+                                </button>
                             <div class="px-5 pb-5">
                                 <div class="px-5 pb-5">
                                     <div class="flex items-center mt-2.5 mb-5 space-x-4">
@@ -74,9 +73,11 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                         ?>
                                     </div>
                                 </div>
-                                <div class="flex items-center justify-between">
+                                    
+                                <div class="flex justify-end items-center">
                                     <span
-                                        class="text-xl font-semibold text-gray-600"><?= $row['nom'] . ' ' . number_format($row['prix'], 2, '.', ' '); ?>$</span>
+                                        class="text-xl font-semibold text-gray-600"><?= $row['nom'] . ' ' . number_format($row['prix'], 2, '.', ' '); ?>$
+                                    </span>
                                     <a href="Add_to_cart.php?id_produit=<?= $row['id_produit'] ?>"
                                         class=" focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center text-gray-600 hover:text-gray-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -84,7 +85,12 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                                         </svg>
-
+                                    </a>
+                                    <a href="Add_to_cart.php?id_produit=<?= $row['id_produit'] ?>"
+                                        class=" focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center text-gray-600 hover:text-gray-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-10 h-10">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                                        </svg>
                                     </a>
                                 </div>
                             </div>
@@ -187,10 +193,13 @@ if (isset($_SESSION['ID_Utilisateur'])) {
                     </div>
                     <!-- Modal body -->
                     <?php
+                    //if(isset($_GET['id_produit']) and !empty($_GET['id_produit'])){
+
                         $id_produit = $_GET['id_produit'];
-                        $select_product = "SELECT * FROM produits WHERE id_produit =$id_produit ";
-                        $show_product = $pdo->prepare($select_product);
-                        $show_product->execute();
+                        $select_product = $pdo->prepare("SELECT * FROM produits WHERE id_produit = :id_produit ");
+                        $show_product->execute(array(
+                            $id_produit
+                        ));
 
                         if ($show_product->rowCount() > 0) {
                             while ($row = $show_product->fetch()) {
@@ -201,16 +210,18 @@ if (isset($_SESSION['ID_Utilisateur'])) {
                         <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
                         <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
                     </div>
-                    <h5 class="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
+                    <h5 class="text-2xl font-semibold text-center tracking-tight text-gray-900 dark:text-white">
                         <?= $row['description']; ?>
                     </h5>
                     <?php
                             }
                         }
+                    //}
                     ?>
                 </div>
             </div>
         </div>
+        
         <?php
 
     }
