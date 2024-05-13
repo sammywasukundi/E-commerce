@@ -33,7 +33,8 @@
             $_SESSION['panier'][$id] = 1;
 
         }
-        header("Location: " . $_SERVER['PHP_SELF']);
+        //header("Location: " . $_SERVER['PHP_SELF']);
+        header('Location: http://localhost/Food_delivery/pages/products.php?id_produit='.$id);
         exit;
     }
 ?>

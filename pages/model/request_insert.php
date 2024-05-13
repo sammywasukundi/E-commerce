@@ -97,12 +97,12 @@
                                     'img_produit' => $_FILES['img_produit']['name']
                                 ));                            
                                 if($insert_product){
-                                    // $_SESSION['message'] = 'produit ajouté avec succès ';
-                                    // exit(0);
-                                    echo "<script>
-                                    alert('produit ajouté avec succès'); 
-                                    </script>"; 
-                                    exit(0); 
+                                    $_SESSION['message'] = 'produit ajouté avec succès ';
+                                    exit(0);
+                                    // echo "<script>
+                                    // alert('produit ajouté avec succès'); 
+                                    // </script>"; 
+                                    //exit(0); 
                                 }
                                 else{
                                     // $_SESSION['message'] = "échec d'enregistrement";

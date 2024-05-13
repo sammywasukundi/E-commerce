@@ -15,17 +15,21 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
 ?>
 
 
-<div class="p-2 sm:ml-64">
-    <div class="rounded-lg dark:border-gray-700 p-2">
+<div class="p-2 sm:ml-64" id="produit">
+    <div class="rounded-lg dark:border-gray-700 p-2 mt-14">
+    <?= require 'model/message.php'; ?>
         <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-14 gap-4 mb-4">
             <?php
+            if(isset($_GET['id_produit']) and !empty($_GET['id_produit'])){
+                $get_id = htmlspecialchars($_GET['id_produit']);
+            }
             $select_product = 'SELECT * FROM produits';
             $show_product = $pdo->prepare($select_product);
             $show_product->execute();
 
             if ($show_product->rowCount() > 0) {
                 while ($row = $show_product->fetch()) {
-
+                    $id=$row['id_produit'];
                     ?>
                     <div class="flex items-center justify-center mt-10 min-h-screen rounded" id="produit1">
                         <div
@@ -38,7 +42,7 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                 <div class="px-5 pb-5">
                                     <div class="flex items-center mt-2.5 mb-5 space-x-4">
                                         <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                                            <a href="#">
+                                            <a href="model/like_dislike.php?t=1&id_produit=<?= $id ?>">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6 hover:text-yellow-400 hover:border-none">
@@ -48,17 +52,18 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                             </a>
                                         </div>
                                         <?php
-                                        //$likes = $DB->query('SELECT id FROM likes WHERE id_article=?',array($product->id));
-                                        //$likes = $product->rowCount();
+                                        $likes = $pdo->prepare('SELECT id_like FROM likes WHERE id_produit=:id_produit');
+                                        $likes ->execute(array('id_produit' => $id));
+                                        $likes = $likes->rowCount();
                                         //foreach ($likes as $like):
                                         ?>
                                         <span
-                                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3"><?= '( 1 )' ?></span>
+                                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">(<?= $likes ?>)</span>
                                         <?php
                                         //endforeach
                                         ?>
                                         <div class="flex items-center space-x-1 rtl:space-x-reverse">
-                                            <a href="#">
+                                            <a href="model/like_dislike.php?t=2&id_produit=<?= $id ?>">
                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                                     stroke-width="1.5" stroke="currentColor"
                                                     class="w-6 h-6 hover:text-yellow-400 hover:border-none">
@@ -69,12 +74,12 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                         </div>
                                         <?php
 
-                                        //$dislikes = $DB->query('SELECT id FROM dislikes WHERE id_article=?',array($dislike->id));
-                                        //$dislikes = $dislike->rowCount();
-                                        //foreach ($dislikes as $dislike):
+                                        $dislikes = $pdo->prepare('SELECT id_dislike FROM dislikes WHERE id_produit=:id_produit');
+                                        $dislikes ->execute(array('id_produit' => $id));
+                                        $dislikes = $dislikes->rowCount();
                                         ?>
                                         <span
-                                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3"><?= '( 1 )' ?></span>
+                                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">(<?= $dislikes ?>)</span>
                                         <?php
                                         //endforeach
                                         ?>
@@ -89,11 +94,31 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                     class="text-yellow-200 bg-white hover:text-gray-700 font-medium rounded-tl-lg rounded-bl-lg text-sm px-5 py-2.5 text-center"
                                     ><ion-icon class="w-7 h-7" name="basket"></ion-icon></a
                                     >
+                                    <?php 
+                                        if (isset($_SESSION['ID_Utilisateur'])) {
+                                            if ($_SESSION['role'] == 'admin') {
+                                                if(isset($_GET['id_produit'])){
+                                                    $prod_del = $_GET['id_produit'];
+                                                    $delete_prod = $pdo->prepare('DELETE FROM produits WHERE id_produit = ?');
+                                                    $delete_prod->execute((array($prod_del)));
+                                                
+                                                    if($delete_prod){
+                                                        //$_SESSION['message'] = 'product deleted successfuly';
+                                                    }
+                                                    else{
+                                                        //$_SESSION['message'] = 'deletion failure';
+                                                    }
+                                                }
+                                    ?>
                                     <a
-                                    href="Add_to_cart.php?id_produit=<?= $row['id_produit'] ?>"
+                                    href="products.php?id_produit=<?= $row['id_produit'] ?>"
                                     class="text-yellow-200 bg-white hover:text-gray-700 font-medium rounded-tl-lg rounded-bl-lg text-sm px-5 py-2.5 text-center"
                                     ><ion-icon name="trash" class="w-7 h-7"></ion-icon></a
                                     >
+                                    <?php 
+                                            }
+                                        }
+                                    ?>
                                 </div>
                             </div>
                         </div>
@@ -195,9 +220,9 @@ if (isset($_SESSION['ID_Utilisateur'])) {
                     </div>
                     <!-- Modal body -->
                     <?php
-                    //if(isset($_GET['id_produit']) and !empty($_GET['id_produit'])){
+                    if(isset($_GET['id_produit']) and !empty($_GET['id_produit'])){
 
-                        $id_produit = $_GET['id_produit'];
+                        $id_produit = htmlspecialchars($_GET['id_produit']);
                         $select_product = $pdo->prepare("SELECT * FROM produits WHERE id_produit = :id_produit ");
                         $show_product->execute(array(
                             $id_produit
@@ -218,7 +243,7 @@ if (isset($_SESSION['ID_Utilisateur'])) {
                     <?php
                             }
                         }
-                    //}
+                    }
                     ?>
                 </div>
             </div>
@@ -229,3 +254,5 @@ if (isset($_SESSION['ID_Utilisateur'])) {
     }
 }
 ?>
+<?php require 'footer.php'; ?>
+<!-- <script src="js/dom.js"></script> -->

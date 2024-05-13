@@ -16,3 +16,4 @@ ScrollReveal().reveal('#logo',{delay:200,distance : '60px',duration : 4000,reset
 ScrollReveal().reveal('#produit1',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
 ScrollReveal().reveal('#produit2',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
 ScrollReveal().reveal('#produit3',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
+ScrollReveal().reveal('#produit',{delay:50,distance : '40px',duration : 1000,reset : true, origin:'top'});
