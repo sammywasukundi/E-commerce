@@ -34,7 +34,7 @@ include 'model/request_select.php';
                             </path>
                         </svg>
                     </button>
-                    <a href="https://flowbite.com" class="flex ms-2 md:me-24">
+                    <a href="#" class="flex ms-2 md:me-24">
                         <img src="../assets/images/splash.png" class="w-14 h-14 rounded-full" alt="Food hub logo" />
                         <p class="flex self-center text-2xl font-extrabold sm:text-2xl whitespace-nowrap dark:text-white text-yellow-700 decoration-1 "
                             style="color: rgb(51, 50, 45);
@@ -150,7 +150,7 @@ include 'model/request_select.php';
 
                     <ul class="space-y-2 font-medium">
                         <li>
-                            <a href="#"
+                            <a href="dashboard.php"
                                 class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"

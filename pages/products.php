@@ -17,10 +17,209 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
 
 <div class="p-2 sm:ml-64" id="produit">
     <div class="rounded-lg dark:border-gray-700 p-2 mt-14">
-    <?= require 'model/message.php'; ?>
+
+
+        <!-- Main modal for users -->
+        <div id="readProductModal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+            <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
+                <!-- Modal content -->
+                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                    <!-- Modal header -->
+                    <div class="flex justify-between mb-4 rounded-t sm:mb-5">
+                        <div class="text-lg text-gray-900 md:text-xl dark:text-white">
+                            <h3 class="font-semibold ">
+                                Apple iMac 27”
+                            </h3>
+                            <p class="font-bold">
+                                $2999
+                            </p>
+                        </div>
+                        <div>
+                            <button type="button"
+                                class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex dark:hover:bg-gray-600 dark:hover:text-white"
+                                data-modal-toggle="readProductModal">
+                                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                    </div>
+                    <dl>
+                        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Details</dt>
+                        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">Standard glass ,3.8GHz
+                            8-core
+                            10th-generation Intel Core i7 processor, Turbo Boost up to 5.0GHz, 16GB 2666MHz DDR4 memory,
+                            Radeon
+                            Pro 5500 XT with 8GB of GDDR6 memory, 256GB SSD storage, Gigabit Ethernet, Magic Mouse 2,
+                            Magic
+                            Keyboard - US.</dd>
+                        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Category</dt>
+                        <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">Electronics/PC</dd>
+                    </dl>
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-3 sm:space-x-4">
+                            <button type="button"
+                                class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                <svg aria-hidden="true" class="mr-1 -ml-1 w-5 h-5" fill="currentColor"
+                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z">
+                                    </path>
+                                    <path fill-rule="evenodd"
+                                        d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                Edit
+                            </button>
+                            <button type="button"
+                                class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                Preview
+                            </button>
+                        </div>
+                        <button type="button"
+                            class="inline-flex items-center text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
+                            <svg aria-hidden="true" class="w-5 h-5 mr-1.5 -ml-1" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Main modal for products -->
+        <div id="defaultModal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
+            <div class="relative p-4 w-full max-w-2xl h-full md:h-auto">
+                <!-- Modal content -->
+                <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
+                    <!-- Modal header -->
+                    <div
+                        class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 dark:border-gray-600">
+                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                            Add Product
+                        </h3>
+                        <button type="button"
+                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="defaultModal">
+                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                    </div>
+                    <!-- Modal body -->
+                    <form action="#">
+                        <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                            <div>
+                                <label for="name"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                <input type="text" name="name" id="name"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Type product name" required="">
+                            </div>
+                            <div>
+                                <label for="brand"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand</label>
+                                <input type="text" name="brand" id="brand"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Product brand" required="">
+                            </div>
+                            <div>
+                                <label for="price"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
+                                <input type="number" name="price" id="price"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="$2999" required="">
+                            </div>
+                            <div>
+                                <label for="category"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                                <select id="category"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option selected="">Select category</option>
+                                    <option value="TV">TV/Monitors</option>
+                                    <option value="PC">PC</option>
+                                    <option value="GA">Gaming/Console</option>
+                                    <option value="PH">Phones</option>
+                                </select>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label for="description"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                <textarea id="description" rows="4"
+                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                    placeholder="Write product description here"></textarea>
+                            </div>
+                        </div>
+                        <button type="submit"
+                            class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            Add new product
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="flex rounded-md shadow-sm mx-auto max-w-lg justify-center mt-14 sm:items-center" role="group">
+            <!--Modal button  -->
+            <button type="button" id="readProductButton" data-modal-target="readProductModal"
+                data-modal-toggle="readProductModal"
+                class="inline-flex items-center px-5 py-5 text-lg font-semibold text-gray-500 bg-white border border-gray-200 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-2 focus:ring-yellow-300 focus:text-yellow-300">
+                <svg class="w-8 h-8 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                    viewBox="0 0 20 20">
+                    <path
+                        d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z" />
+                </svg>
+                Utilisateurs
+            </button>
+            <button type="button"
+                class="inline-flex items-center px-5 py-5 text-lg font-semibold text-gray-500 bg-white border border-gray-200 hover:bg-gray-100 hover:text-gray-700 focus:z-10 focus:ring-2 focus:ring-yellow-300 focus:text-yellow-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8 me-2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+                </svg>
+
+                Modifier
+            </button>
+            <!-- Modal toggle products -->
+            <button type="button" id="defaultModalButton" data-modal-target="defaultModal" data-modal-toggle="defaultModal"
+                class="inline-flex items-center px-5 py-5 text-lg font-semibold text-gray-500 bg-white border border-gray-200 rounded-e-lg hover:bg-gray-100 hover:text-gray-900 focus:z-10 focus:ring-2 focus:ring-yellow-300 focus:text-yellow-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-8 h-8 me-2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                </svg>
+
+                Ajouter
+            </button>
+        </div>
+
+        <?= require 'model/message.php'; ?>
         <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-14 gap-4 mb-4">
             <?php
-            if(isset($_GET['id_produit']) and !empty($_GET['id_produit'])){
+            if (isset($_GET['id_produit']) and !empty($_GET['id_produit'])) {
                 $get_id = htmlspecialchars($_GET['id_produit']);
             }
             $select_product = 'SELECT * FROM produits';
@@ -29,15 +228,15 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
 
             if ($show_product->rowCount() > 0) {
                 while ($row = $show_product->fetch()) {
-                    $id=$row['id_produit'];
+                    $id = $row['id_produit'];
                     ?>
                     <div class="flex items-center justify-center mt-10 min-h-screen rounded" id="produit1">
                         <div
                             class="mx-auto max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                                <button type="submit" data-modal-target="large-modal" data-modal-toggle="large-modal">
-                                    <img class="p-4 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>"
-                                        alt="product image" />
-                                </button>
+                            <button type="submit" data-modal-target="large-modal" data-modal-toggle="large-modal">
+                                <img class="p-4 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>"
+                                    alt="product image" />
+                            </button>
                             <div class="px-5 pb-5">
                                 <div class="px-5 pb-5">
                                     <div class="flex items-center mt-2.5 mb-5 space-x-4">
@@ -53,12 +252,12 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                         </div>
                                         <?php
                                         $likes = $pdo->prepare('SELECT id_like FROM likes WHERE id_produit=:id_produit');
-                                        $likes ->execute(array('id_produit' => $id));
+                                        $likes->execute(array('id_produit' => $id));
                                         $likes = $likes->rowCount();
                                         //foreach ($likes as $like):
                                         ?>
                                         <span
-                                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">(<?= $likes ?>)</span>
+                                            class="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400"><?= $likes ?></span>
                                         <?php
                                         //endforeach
                                         ?>
@@ -75,49 +274,43 @@ if (!isset($_SESSION['ID_Utilisateur'])) {
                                         <?php
 
                                         $dislikes = $pdo->prepare('SELECT id_dislike FROM dislikes WHERE id_produit=:id_produit');
-                                        $dislikes ->execute(array('id_produit' => $id));
+                                        $dislikes->execute(array('id_produit' => $id));
                                         $dislikes = $dislikes->rowCount();
                                         ?>
                                         <span
-                                            class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">(<?= $dislikes ?>)</span>
+                                            class="bg-red-100 text-red-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400"><?= $dislikes ?></span>
                                         <?php
                                         //endforeach
                                         ?>
                                     </div>
                                 </div>
                                 <div class="flex justify-between items-center">
-                                    <span class="text-base font-normal text-gray-900 "
-                                    ><?= $row['nom'] ?><?= ' '.number_format($row['prix'],2,',',','); ?>$</span
-                                    >
-                                    <a
-                                    href="Add_to_cart.php?id_produit=<?= $row['id_produit'] ?>"
-                                    class="text-yellow-200 bg-white hover:text-gray-700 font-medium rounded-tl-lg rounded-bl-lg text-sm px-5 py-2.5 text-center"
-                                    ><ion-icon class="w-7 h-7" name="basket"></ion-icon></a
-                                    >
-                                    <?php 
-                                        if (isset($_SESSION['ID_Utilisateur'])) {
-                                            if ($_SESSION['role'] == 'admin') {
-                                                if(isset($_GET['id_produit'])){
-                                                    $prod_del = $_GET['id_produit'];
-                                                    $delete_prod = $pdo->prepare('DELETE FROM produits WHERE id_produit = ?');
-                                                    $delete_prod->execute((array($prod_del)));
-                                                
-                                                    if($delete_prod){
-                                                        //$_SESSION['message'] = 'product deleted successfuly';
-                                                    }
-                                                    else{
-                                                        //$_SESSION['message'] = 'deletion failure';
-                                                    }
+                                    <span
+                                        class="text-base font-normal text-gray-900 "><?= $row['nom'] ?><?= ' ' . number_format($row['prix'], 2, ',', ','); ?>$</span>
+                                    <a href="Add_to_cart.php?id_produit=<?= $row['id_produit'] ?>"
+                                        class="text-yellow-200 bg-white hover:text-gray-700 font-medium rounded-tl-lg rounded-bl-lg text-sm px-5 py-2.5 text-center"><ion-icon
+                                            class="w-7 h-7" name="basket"></ion-icon></a>
+                                    <?php
+                                    if (isset($_SESSION['ID_Utilisateur'])) {
+                                        if ($_SESSION['role'] == 'admin') {
+                                            if (isset($_GET['id_produit'])) {
+                                                $prod_del = $_GET['id_produit'];
+                                                $delete_prod = $pdo->prepare('DELETE FROM produits WHERE id_produit = ?');
+                                                $delete_prod->execute((array($prod_del)));
+
+                                                if ($delete_prod) {
+                                                    //$_SESSION['message'] = 'product deleted successfuly';
+                                                } else {
+                                                    //$_SESSION['message'] = 'deletion failure';
                                                 }
-                                    ?>
-                                    <a
-                                    href="products.php?id_produit=<?= $row['id_produit'] ?>"
-                                    class="text-yellow-200 bg-white hover:text-gray-700 font-medium rounded-tl-lg rounded-bl-lg text-sm px-5 py-2.5 text-center"
-                                    ><ion-icon name="trash" class="w-7 h-7"></ion-icon></a
-                                    >
-                                    <?php 
                                             }
+                                            ?>
+                                            <a href="products.php?id_produit=<?= $row['id_produit'] ?>"
+                                                class="text-yellow-200 bg-white hover:text-gray-700 font-medium rounded-tl-lg rounded-bl-lg text-sm px-5 py-2.5 text-center"><ion-icon
+                                                    name="trash" class="w-7 h-7"></ion-icon></a>
+                                            <?php
                                         }
+                                    }
                                     ?>
                                 </div>
                             </div>
@@ -220,27 +413,29 @@ if (isset($_SESSION['ID_Utilisateur'])) {
                     </div>
                     <!-- Modal body -->
                     <?php
-                    if(isset($_GET['id_produit']) and !empty($_GET['id_produit'])){
+                    if (isset($_GET['id_produit']) and !empty($_GET['id_produit'])) {
 
                         $id_produit = htmlspecialchars($_GET['id_produit']);
                         $select_product = $pdo->prepare("SELECT * FROM produits WHERE id_produit = :id_produit ");
-                        $show_product->execute(array(
-                            $id_produit
-                        ));
+                        $show_product->execute(
+                            array(
+                                $id_produit
+                            )
+                        );
 
                         if ($show_product->rowCount() > 0) {
                             while ($row = $show_product->fetch()) {
 
-                    ?>
-                    <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-4 gap-2 md:p-4 sm:p-4 mx-auto max-w-full">
-                        <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
-                        <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
-                        <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
-                    </div>
-                    <h5 class="text-2xl font-semibold text-center tracking-tight text-gray-900 dark:text-white">
-                        <?= $row['description']; ?>
-                    </h5>
-                    <?php
+                                ?>
+                                <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-4 gap-2 md:p-4 sm:p-4 mx-auto max-w-full">
+                                    <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
+                                    <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
+                                    <img class="p-2 rounded-t-lg" src="img_produits/<?= $row['img_produit']; ?>" alt="product image" />
+                                </div>
+                                <h5 class="text-2xl font-semibold text-center tracking-tight text-gray-900 dark:text-white">
+                                    <?= $row['description']; ?>
+                                </h5>
+                                <?php
                             }
                         }
                     }
@@ -248,7 +443,7 @@ if (isset($_SESSION['ID_Utilisateur'])) {
                 </div>
             </div>
         </div>
-        
+
         <?php
 
     }
