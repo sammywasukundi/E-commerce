@@ -83,7 +83,7 @@
                     {
                         $nom_fichier = pathinfo($_FILES['img_produit']['name']);
                         $recup_extension =  $nom_fichier['extension'];
-                        $extensions =array('png','jpg','JPG','jpeg');
+                        $extensions =array('png','jpg','jpeg');
                         if(in_array($recup_extension,$extensions)){
                             if(move_uploaded_file($_FILES['img_produit']['tmp_name'],'img_produits/'.basename($_FILES['img_produit']['name'])))
                             {

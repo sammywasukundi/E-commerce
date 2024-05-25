@@ -13,7 +13,11 @@ ScrollReveal().reveal('#image',{delay:200,distance : '80px',duration : 4000,rese
 ScrollReveal().reveal('#form',{delay:200,distance : '80px',duration : 4000,reset : true, origin:'right'});
 ScrollReveal().reveal('#form_inscription',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
 ScrollReveal().reveal('#logo',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
-ScrollReveal().reveal('#produit1',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
-ScrollReveal().reveal('#produit2',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
-ScrollReveal().reveal('#produit3',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
+ScrollReveal().reveal('#grid1',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
+ScrollReveal().reveal('#grid2',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
+ScrollReveal().reveal('#grid3',{delay:200,distance : '60px',duration : 4000,reset : true, origin:'top'});
 ScrollReveal().reveal('#produit',{delay:50,distance : '40px',duration : 1000,reset : true, origin:'top'});
+
+
+
+
